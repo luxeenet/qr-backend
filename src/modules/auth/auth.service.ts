@@ -8,7 +8,7 @@ import {
   verifyRefreshToken,
   TokenPayload,
 } from '../../utils/token';
-import { UnauthorizedError, NotFoundError, ForbiddenError } from '../../utils/errors';
+import { UnauthorizedError, NotFoundError, ForbiddenError, ConflictError } from '../../utils/errors';
 import { env } from '../../config/env';
 
 export const authService = {
