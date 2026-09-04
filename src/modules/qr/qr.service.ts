@@ -7,8 +7,10 @@ import { User, UserRole } from '../../models/User';
 import { NotFoundError, ForbiddenError, OrganizationAccessError } from '../../utils/errors';
 import { env } from '../../config/env';
 
-const getVerificationUrl = (token: string): string =>
-  `${env.APP_URL.replace(':5000', ':3000')}/verify/${token}`;
+const getVerificationUrl = (token: string): string => {
+  const baseUrl = process.env.FRONTEND_URL || env.APP_URL.replace(':5000', ':3000');
+  return `${baseUrl.replace(/\/$/, '')}/verify/${token}`;
+};
 
 const checkAccess = async (record: { organizationId: unknown }, actorId: string, actorRole: string) => {
   if (actorRole === UserRole.UPLOADER) {
