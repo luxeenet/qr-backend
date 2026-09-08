@@ -59,6 +59,18 @@ export const organizationController = {
     }
   },
 
+  async getLogo(req: AuthRequest, res: Response, next: NextFunction) {
+    try {
+      const { path, exists } = await organizationService.getLogoPath(req.params.id);
+      if (!exists) {
+        return apiResponse.error(res, 'Logo not found', 404, 'NOT_FOUND');
+      }
+      return res.sendFile(path);
+    } catch (err) {
+      next(err);
+    }
+  },
+
   async uploadLogo(req: AuthRequest, res: Response, next: NextFunction) {
     try {
       if (!req.file) {

@@ -108,6 +108,15 @@ export const organizationService = {
     return org;
   },
 
+  async getLogoPath(id: string): Promise<{ path: string; exists: boolean }> {
+    const org = await Organization.findOne({ _id: id, deletedAt: null }).lean();
+    if (!org || !org.logoPath) {
+      return { path: '', exists: false };
+    }
+    const fullPath = path.join(process.cwd(), env.UPLOAD_DIR, path.basename(org.logoPath));
+    return { path: fullPath, exists: fs.existsSync(fullPath) };
+  },
+
   async uploadLogo(
     id: string,
     filePath: string,

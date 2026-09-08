@@ -6,6 +6,9 @@ import { uploadSingle } from '../../middleware/upload.middleware';
 
 const router = Router();
 
+// Public — no authentication required
+router.get('/:id/logo', organizationController.getLogo as any);
+
 router.use(authenticate);
 
 // Admin only
