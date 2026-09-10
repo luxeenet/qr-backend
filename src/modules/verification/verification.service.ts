@@ -6,7 +6,7 @@ import { NotFoundError } from '../../utils/errors';
 const statusMessages: Record<IDStatus, { verified: boolean; message: string }> = {
   [IDStatus.ACTIVE]: {
     verified: true,
-    message: 'VALID ID — This ID is currently registered and active.',
+    message: 'Valid, registered and active',
   },
   [IDStatus.REVOKED]: {
     verified: false,
