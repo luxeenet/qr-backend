@@ -64,9 +64,9 @@ export const verificationService = {
       idImageUrl,
       organization: org
         ? {
-            name: org.name,
-            logoUrl,
-          }
+          name: org.name,
+          logoUrl,
+        }
         : null,
     };
   },
